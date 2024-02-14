@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<label>Policy no:<input th:field="${policy.policy_id}"></label>
+<form th:action="@{/Policy/save}" th:object="${policy}" method="post">
+    <label>Policy Holder Name</label>
+    <input type="text" th:field="${policy.policy_name}"><br>
+    <label>Addrss line-1 </label>
+    <input type="text" th:field="${policy.address1}"><br>
+    <label>Addrss line-2 </label>
+    <input type="text" th:field="${policy.address2}"><br>
+    <label>Select State</label>
+    <select id ="state" name ="state">
+        <option th:each="state :${states}"
+            th:id="${state.state_id}" th:name="state" th:value="${state.state_id}" th:text="${state.state_name}"></option>
+    </select>
+        <br><br>
+    <label>Coverage List</label>
+    <div th:each="coverage:${coverages}">
+        <input type="checkbox" th:id="${coverage.cov_id}" th:name="coverage" th:value="${coverage.cov_id}">
+        <label th:for="${coverage.cov_id}" th:text="${coverage.cov_name}"></label>
+    </div>
+    <input type="hidden" th:name="status" th:value="Draft">
+    <input type="submit" value="get_premium">
+</form>
+</body>
+</html>

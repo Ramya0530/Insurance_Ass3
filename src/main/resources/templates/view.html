@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Policies</title>
+</head>
+<body>
+<table border="1px">
+    <thead>
+    <tr>
+        <th>Policy id</th>
+        <th>Policy holder</th>
+        <th>Address-1</th>
+        <th>Address-2</th>
+        <th>State</th>
+        <th>Coverage</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="policy : ${policies}">
+        <td th:text="${policy.policy_id}"></td>
+        <td th:text="${policy.policy_name}"></td>
+        <td th:text="${policy.address1}"></td>
+        <td th:text="${policy.address2}"></td>
+        <td th:text="${policy.states.state_name}"></td>
+        <td>
+            <ul>
+                <li th:each="coverage : ${policy.coverages}" th:text="${coverage.cov_name}"></li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
